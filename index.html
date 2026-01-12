@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Soda Gas Tracker</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="app">
+  <header class="app__header">
+    <div class="brand">
+      <div class="brand__logo">SG</div>
+      <div class="brand__content">
+        <h1 class="brand__title">Soda Gas Tracker</h1>
+        <p class="brand__lead">ガス残量を感覚的に管理するプロトタイプ</p>
+      </div>
+    </div>
+    <div class="chip">localStorage 保存モード</div>
+  </header>
+
+  <main class="layout">
+    <!-- Main card -->
+    <section class="card card--main">
+      <div class="status-row">
+        <div class="gauge-wrap">
+          <svg class="gauge" viewBox="0 0 120 120" aria-hidden>
+            <defs>
+              <linearGradient id="g1" x1="0" x2="1">
+                <stop offset="0%" stop-color="#1e88e5" />
+                <stop offset="100%" stop-color="#1565c0" />
+              </linearGradient>
+            </defs>
+            <circle cx="60" cy="60" r="48" class="gauge__bg" stroke-width="12" fill="none"></circle>
+            <circle class="gauge__arc" cx="60" cy="60" r="48" stroke="url(#g1)" stroke-width="12" fill="none"
+              stroke-linecap="round" transform="rotate(-90 60 60)" stroke-dasharray="301.59" stroke-dashoffset="60">
+            </circle>
+          </svg>
+          <div class="gauge__center">
+            <div class="gauge__big" data-remaining-g>425 g</div>
+            <div class="gauge__small">残量</div>
+          </div>
+        </div>
+
+        <div class="details">
+          <div class="stat-grid">
+            <div class="stat">
+              <div class="stat__label">作れる炭酸水（合計）</div>
+              <div class="stat__value" data-remaining-l>約60 L</div>
+            </div>
+            <div class="stat">
+              <div class="stat__label">500 mL換算</div>
+              <div class="stat__value" data-remaining-cups>約120 回</div>
+            </div>
+            <div class="stat">
+              <div class="stat__label">使用した合計(g)</div>
+              <div class="stat__value" data-consumed-total>0 g</div>
+            </div>
+            <div class="stat">
+              <div class="stat__label">最後のリセット</div>
+              <div class="stat__value" data-last-reset>—</div>
+            </div>
+          </div>
+
+          <div class="controls">
+            <div class="field">
+              <label class="field__label">容器サイズ</label>
+              <select class="field__input" data-container>
+                <option value="0.5">500 mL</option>
+                <option value="1">1 L</option>
+                <option value="0.33">330 mL</option>
+              </select>
+            </div>
+
+            <div class="field">
+              <label class="field__label">押した秒数</label>
+              <input class="field__input" type="number" step="0.1" min="0" value="1" data-seconds />
+            </div>
+
+            <div class="field">
+              <label class="field__label">回数</label>
+              <input class="field__input" type="number" min="1" value="1" data-count />
+            </div>
+
+            <div class="row">
+              <button class="btn btn--primary" data-use>使用を記録</button>
+              <button class="btn btn--ghost" data-reset>ボンベ交換（リセット）</button>
+            </div>
+
+            <div class="field">
+              <label class="field__label">カスタム g/秒</label>
+              <input class="field__input" type="number" step="0.1" min="0" value="3.54" data-gpersec />
+            </div>
+
+            <div class="note">※メーカー公表値（425 g → 約60 L）をベースにしたサンプルUIです。JavaScriptで動きを付けます。</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Side section -->
+    <section class="card card--side">
+      <h3 class="side__title">使用履歴</h3>
+      <div class="history" data-history>
+        <div class="history__empty">まだ記録がありません。使用を記録するとここに表示されます。</div>
+      </div>
+
+      <div class="spacer"></div>
+
+      <div class="card card--meta">
+        <div class="meta__left">
+          <div class="meta__label">データ保存</div>
+          <div class="meta__value">localStorage</div>
+        </div>
+        <div class="meta__right">
+          <div class="meta__label">バージョン</div>
+          <div class="meta__value">v0.1</div>
+        </div>
+      </div>
+    </section>
+  </main>
+<svg class="gauge" viewBox="0 0 120 120" aria-hidden>
+  <defs>
+    <linearGradient id="g1" x1="0" x2="1">
+
+    </linearGradient>
+  </defs>
+</svg>
+</body>
+
+</html>
